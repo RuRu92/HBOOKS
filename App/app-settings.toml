@@ -1,0 +1,3 @@
+appName = "HazleFX"
+apiKey = "FooBar"
+supportedCurrency = ["USD", "EUR", "GBP"]
