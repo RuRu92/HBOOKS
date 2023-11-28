@@ -1,5 +1,5 @@
 .stack-work/
 *~
 .vscode/
-App/.stack-work/
-App/squashfs-root/
+./App/.stack-work/
+./App/squashfs-root/
