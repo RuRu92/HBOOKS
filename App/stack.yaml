@@ -18,7 +18,10 @@
 # resolver: ./custom-snapshot.yaml
 # resolver: https://example.com/snapshots/2018-01-01.yaml
 resolver:
-  url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/21/20.yaml
+  url: 
+    https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/21/20.yaml
+
+# resolver: ghc-9.4.7
 
 # User packages to be built.
 # Various formats can be used as shown in the example below.
@@ -36,28 +39,65 @@ packages:
 # forks / in-progress versions pinned to a git hash. For example:
 #
 extra-deps:
-  - ghc-lib-parser-ex-9.6.0.2
-  - ghc-lib-parser-9.6.3.20231014
-  - binary-0.8.9.1
-  - filepath-1.4.100.4
-  - Cabal-3.10.2.1
-  - Cabal-syntax-3.10.2.0
-  - hindent-6.0.0
-  - process-1.6.18.0
-  - unix-2.8.3.0
-  - text-2.0.2
-  - directory-1.3.8.1
-  - bytestring-0.11.5.3
-  - th-abstraction-0.5.0.0
-  - text-iso8601-0.1
-  - integer-conversion-0.1.0.1
-  - parsec-3.1.17.0
-  - aeson-2.2.1.0
-  - exceptions-0.10.7
-  - mtl-2.3.1
-  - transformers-0.6.1.1
-  - validation-selective-0.2.0.0
-  - tomland-1.3.3.2
+- ghc-source-gen-0.4.3.0
+- validation-selective-0.2.0.0
+- filepath-1.4.100.4
+- semialign-1.3
+- ghc-lib-parser-ex-9.6.0.2
+- servant-0.20.1
+- assoc-1.1
+- directory-1.3.8.1
+- ghc-lib-parser-9.6.3.20231014
+- relude-1.2.1.0
+- co-log-core-0.3.2.1
+- cassava-0.5.3.0
+- generically-0.1.1
+- tagged-0.8.8
+- chronos-1.1.5.1
+- vector-0.13.1.0
+- parsec-3.1.17.0
+- strict-0.5
+- resource-pool-0.2.3.2
+- these-1.2
+- OneTuple-0.4.1.1
+- ansi-terminal-types-0.11.5
+- jwt-0.9.0
+- unix-2.8.3.0
+- exceptions-0.10.7
+- bytestring-0.11.5.3
+- byteslice-0.2.11.1
+- proto-lens-protoc-0.7.0.0
+- proto-lens-0.7.1.3
+- Cabal-3.10.2.1
+- Cabal-syntax-3.10.2.0
+- text-iso8601-0.1
+- ansi-terminal-1.0
+- proto-lens-runtime-0.7.0.0
+- hindent-6.0.0
+- mtl-2.3.1
+- tomland-1.3.3.2
+- text-2.0.2
+- aeson-2.2.1.0
+- servant-proto-lens-0.1.0.3
+- process-1.6.18.0
+- integer-conversion-0.1.0.1
+- co-log-0.6.0.2
+- http-api-data-0.6
+- transformers-0.6.1.1
+- th-abstraction-0.5.0.0
+- primitive-0.8.0.0
+- QuickCheck-2.14.3
+- binary-0.8.9.1
+- postgresql-simple-named-0.0.4.0
+- postgresql-simple-0.6.5.1
+- postgresql-libpq-0.9.5.0
+- foldable1-classes-compat-0.1
+- natural-arithmetic-0.1.4.0
+# - hashtable-1.4.3.0
+- hashable-1.4.3.0
+allow-newer-deps:
+- proto-lens-protoc
+  # - ghc-source-gen
 
 # - acme-missiles-0.3
 # - git: https://github.com/commercialhaskell/stack.git
@@ -88,4 +128,4 @@ extra-deps:
 #
 # Allow a newer minor version of GHC than the snapshot specifies
 # compiler-check: newer-minor
-# allow-newer: true
+allow-newer: true

@@ -25,8 +25,15 @@ source-repository head
 
 library
   exposed-modules:
-      HBooks.Domain
+      HBooks.Prelude
       HBooks.Config
+      HBooks.Core.OrderBook
+      HBooks.Core.User
+      HBooks.App.Env
+      HBooks.App.Id
+      HBooks.App.Session
+      HBooks.App.Types
+      HBooks.App.Monad
       HBooks.Cli
       HBooks.Cli.CliOptions
       HBooks.Cli.DocFiles
@@ -35,20 +42,50 @@ library
       Paths_HBOOKS
   autogen-modules:
       Paths_HBOOKS
+  default-extensions:
+      StandaloneDeriving
+      NoImplicitPrelude
+      RankNTypes
+      DerivingStrategies
+      OverloadedStrings
+      DeriveGeneric
+      DeriveAnyClass
+      DerivingVia
+      GeneralizedNewtypeDeriving
+      ScopedTypeVariables
+      RecordWildCards
+      TypeOperators
+      TypeFamilies
+      TypeApplications
+      ConstraintKinds
+      FlexibleContexts
+      DataKinds
+      MultiParamTypeClasses
+      GADTs
+      UndecidableInstances
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       Diff >=0.2
     , aeson >=1 && <2.3
     , base >=4.7 && <5
     , bytestring
+    , cassava >=0.5.3.0
     , cmdargs >=0.10.22
+    , co-log >=0.6.0.2
     , containers
     , filepath
     , hashable >=1.2.4
+    , http-api-data >=0.6
+    , http-types >=0.12.3
     , lucid
     , mtl
+    , postgresql-simple
+    , postgresql-simple-named
     , process
+    , relude >=1.2.1.0
+    , resource-pool
     , safe >=0.3.19
+    , servant >=0.20.1
     , text
     , time >=1.5
     , timeit
@@ -56,6 +93,7 @@ library
     , transformers
     , unordered-containers
     , utf8-string >=0.3.5
+    , uuid
   default-language: Haskell2010
 
 executable hbooks
@@ -72,12 +110,21 @@ executable hbooks
     , aeson >=1 && <2.3
     , base >=4.7 && <5
     , bytestring
+    , cassava >=0.5.3.0
     , cmdargs >=0.10.22
+    , co-log >=0.6.0.2
     , containers
     , filepath
+    , http-api-data >=0.6
+    , http-types >=0.12.3
     , mtl
+    , postgresql-simple
+    , postgresql-simple-named
     , process
+    , relude >=1.2.1.0
+    , resource-pool
     , safe >=0.3.19
+    , servant >=0.20.1
     , text
     , time >=1.5
     , timeit
@@ -85,6 +132,7 @@ executable hbooks
     , transformers
     , unordered-containers
     , utf8-string >=0.3.5
+    , uuid
   default-language: Haskell2010
 
 test-suite hbooks-test
@@ -102,12 +150,21 @@ test-suite hbooks-test
     , aeson >=1 && <2.3
     , base >=4.7 && <5
     , bytestring
+    , cassava >=0.5.3.0
     , cmdargs >=0.10.22
+    , co-log >=0.6.0.2
     , containers
     , filepath
+    , http-api-data >=0.6
+    , http-types >=0.12.3
     , mtl
+    , postgresql-simple
+    , postgresql-simple-named
     , process
+    , relude >=1.2.1.0
+    , resource-pool
     , safe >=0.3.19
+    , servant >=0.20.1
     , text
     , time >=1.5
     , timeit
@@ -115,4 +172,5 @@ test-suite hbooks-test
     , transformers
     , unordered-containers
     , utf8-string >=0.3.5
+    , uuid
   default-language: Haskell2010

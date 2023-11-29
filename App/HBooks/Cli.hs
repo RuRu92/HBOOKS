@@ -3,7 +3,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 {-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
 {-# HLINT ignore "Unused LANGUAGE pragma" #-}
-{-# HLINT ignore "Unused LANGUAGE pragma" #-}
 
 module HBooks.Cli (
     versionString,
@@ -15,6 +14,8 @@ module HBooks.Cli (
     module HBooks.Cli.DocFiles
 )
 where
+
+import HBooks.Prelude
 
 import Control.Monad (when)
 import Control.Monad.Reader
@@ -55,6 +56,7 @@ main :: IO ()
 main = do
     startTime <- getCurrentTime
     appSettings <- loadConfig
+    
     print startTime
     -- putStrLn $ formatTime defualtTimeLocale "%FT%T" $ posixSecondsToUTCTime startTime 
 

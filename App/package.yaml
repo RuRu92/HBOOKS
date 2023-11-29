@@ -21,8 +21,10 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
+- relude >= 1.2.1.0 
 - bytestring
 - text
+- uuid
 - filepath
 - containers
 - mtl
@@ -36,6 +38,23 @@ dependencies:
 - utf8-string >=0.3.5
 - cmdargs >= 0.10.22
 - tomland >= 1.3.3.2
+- postgresql-simple
+- postgresql-simple-named
+- co-log >= 0.6.0.2
+- cassava >= 0.5.3.0
+- servant >= 0.20.1
+- http-api-data >= 0.6
+- http-types >= 0.12.3
+- resource-pool
+# - proto-lens
+# - proto-lens-protoc
+# - proto-lens-runtime
+
+
+
+# mixins:
+#   - base hiding (Prelude)
+#   - HBooks.Prelude as Prelude
 
 ghc-options:
 - -Wall
@@ -49,10 +68,17 @@ ghc-options:
 - -Wredundant-constraints
 
 library:
-  # source-dirs: hbooks/HBooks/
+  # source-dirs: App
   exposed-modules:
-    - HBooks.Domain
+    - HBooks.Prelude
     - HBooks.Config
+    - HBooks.Core.OrderBook
+    - HBooks.Core.User
+    - HBooks.App.Env
+    - HBooks.App.Id
+    - HBooks.App.Session
+    - HBooks.App.Types
+    - HBooks.App.Monad
     - HBooks.Cli
     - HBooks.Cli.CliOptions
     - HBooks.Cli.DocFiles
@@ -61,6 +87,27 @@ library:
     - Diff >=0.2
     - hashable >=1.2.4
     - lucid
+  default-extensions:
+    - StandaloneDeriving
+    - NoImplicitPrelude 
+    - RankNTypes
+    - DerivingStrategies
+    - OverloadedStrings
+    - DeriveGeneric
+    - DeriveAnyClass
+    - DerivingVia
+    - GeneralizedNewtypeDeriving
+    - ScopedTypeVariables
+    - RecordWildCards
+    - TypeOperators
+    - TypeFamilies
+    - TypeApplications
+    - ConstraintKinds
+    - FlexibleContexts
+    - DataKinds
+    - MultiParamTypeClasses
+    - GADTs
+    - UndecidableInstances
 
 executables:
   hbooks:

@@ -7,46 +7,40 @@ module HBooks.Config
   , AppSettings
   ) where
 
+import HBooks.Prelude
+
 import           Control.Monad.IO.Class
 import           Data.ByteString
 import           Data.Text
-import           Prelude                as P
 import           Toml                   (TomlBiMap, TomlCodec, (.=))
 
 import qualified Toml
 
-import           HBooks.Domain          (Role, User)
-
-import qualified HBooks.Domain          as Domain
-
-newtype Currency =
-  Currency Text
-  deriving (Eq, Show)
+import           HBooks.Core.User          (Role, User)
+import           HBooks.Core.OrderBook     (Currency (..))
 
 data AppSettings = AppSettings
   { appName           :: Text
   , apiKey            :: Text
-  , supportedCurrency :: ![Text]
+  , supportedCurrency :: [Currency]
   -- , activeUser        :: Maybe Domain.User
   } deriving (Show)
 
 
+-- TextBy :: forall a. => (a -> Text) -> (Text -> a) -> TomlBiMap a AnyValue 
 currencyCodec :: TomlBiMap Currency Toml.AnyValue
 currencyCodec = Toml._TextBy showCurrency parseCurrency
   where
     showCurrency (Currency t) = t
     parseCurrency t           = Right $ Currency t
 
-currencyTomlCodec :: TomlCodec Currency
-currencyTomlCodec = Toml.diwrap (Toml.text "supportedCurrency")
-
+-- | The codec for the @AppSettings@ type.
+-- | Toml.arrayOf :: TomlBiMap a -> Text -> TomlCodec [a]
 appSettingsCodec :: TomlCodec AppSettings
 appSettingsCodec =
   AppSettings <$> Toml.text "appName" .= appName <*>
   Toml.text "apiKey" .= apiKey <*>
-  -- Toml.list currencyTomlCodec "supportedCurrency" .= supportedCurrency
-  -- Toml.list currencyTomlCodec "supportedCurrency" .= supportedCurrency
-  Toml.arrayOf currencyTomlCodec "supportedCurrency" .= supportedCurrency
+  Toml.arrayOf currencyCodec "supportedCurrency" .= supportedCurrency
 
 -- | Loads the @config.toml@ file.
 -- loadConfig :: MonadIO m => m AppSettings
@@ -63,9 +57,9 @@ loadConfig = do
     Right settings -> do
       let currencies = supportedCurrency settings
       liftIO $ print currencies
-      -- let pairs = buildSupportedCurrencyPairs currencies
-      -- let updatedSettings = settings {supportedCurrency = pairs}
-      -- liftIO $ print updatedSettings
+      let pairs = buildSupportedCurrencyPairs currencies
+      let updatedSettings = settings {supportedCurrency = pairs}
+      liftIO $ print updatedSettings
       return settings
 
 buildSupportedCurrencyPairs :: [Currency] -> [Currency]

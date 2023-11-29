@@ -1,3 +1,4 @@
+import HBooks.Prelude
 module Main (main) where
 
 import qualified HBooks.Cli (main)
@@ -7,4 +8,3 @@ import qualified HBooks.Cli (main)
 
 main :: IO ()
 main = HBooks.Cli.main
-
